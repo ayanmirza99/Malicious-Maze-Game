@@ -88,6 +88,7 @@ void generateMaze()
 
 int main()
 {
+    printf("git checking");
     setCoordinates(29, 14);
     printf("Ayan");
     Sleep(800);
