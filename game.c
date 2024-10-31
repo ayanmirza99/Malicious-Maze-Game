@@ -51,7 +51,7 @@ void resetConditions()
     }
 }
 
-void generateMaze()
+void generateMaze(int includeMonsters)
 {
     system("cls");
     printf("+----------------------------------------------------+\n");
@@ -80,13 +80,16 @@ void generateMaze()
                     }
                 }
 
-                int isMonster = 0;                        // flag to check if there should be a monster at that position
-                for (int k = 0; k < NUM_OF_MONSTERS; k++) // loops through the number of monsters i-e; 24
+                int isMonster = 0; // flag to check if there should be a monster at that position
+                if (includeMonsters)
                 {
-                    if (j == monsterX[k] && i == monstersY[k]) // checks if the current j and i position of the row and column corresponds to the x and y position of the current index of monter in the array
+                    for (int k = 0; k < NUM_OF_MONSTERS; k++) // loops through the number of monsters i-e; 24
                     {
-                        isMonster = 1; // if yes, then the flag is raised as true that means that we have to put a monster there
-                        break;
+                        if (j == monsterX[k] && i == monstersY[k]) // checks if the current j and i position of the row and column corresponds to the x and y position of the current index of monter in the array
+                        {
+                            isMonster = 1; // if yes, then the flag is raised as true that means that we have to put a monster there
+                            break;
+                        }
                     }
                 }
 
@@ -109,7 +112,7 @@ void generateMaze()
     printf("+----------------------------------------------------+");
 }
 
-int movePlayer(char direction)
+int movePlayer(char direction, int includeMonsters)
 {
     int newX = playerX;
     int newY = playerY;
@@ -158,14 +161,14 @@ int movePlayer(char direction)
         }
     }
 
-    generateMaze(); // generate updated maze with new player position
+    generateMaze(includeMonsters); // generate updated maze with new player position
     return 0;
 }
 
 void level1()
 {
     resetConditions();
-    generateMaze();
+    generateMaze(0);
 
     char input;
     while (1)
@@ -175,11 +178,13 @@ void level1()
         {
             return;
         }
-        int checkMonster = movePlayer(input);
+        int checkMonster = movePlayer(input, 0);
 
         if (checkMonster)
         {
             system("cls");
+            setCoordinates(29, 18);
+            printf("You have been eaten by the monster");
             break;
         }
 
@@ -189,14 +194,11 @@ void level1()
             break;
         }
     }
-    setCoordinates(29, 18);
-    printf("You have been eaten by the monster");
 }
 
 int main()
 {
     setCoordinates(29, 14);
-    printf("WELCOME LAD THERE ARE THREE LEVELS TO THIS GAME WANNA PLAY [Y/y]: ");
     char input;
     scanf("%c", &input);
     if (tolower(input) == 'y')
