@@ -131,11 +131,35 @@ int movePlayer(char direction)
     }
     if (newX >= 0 && newX < GRID_SIZE && newY >= 0 && newY < GRID_SIZE) // cheks if the new X and Y coordinates of player are greater than or equal to zero as they can't be negative and whether they are within the grid
     {
-        playerX = newX;
-        playerY = newY;
+        int canMove = 1, isAMonster = 0; // Flag to indicate if the move is valid
+
+        for (int i = 0; i < NUM_OF_OBJECTS; i++)
+        {
+            if (newX == objectX[i] && newY == objectY[i])
+            {
+                canMove = 0;
+                break;
+            }
+        }
+
+        for (int i = 0; i < NUM_OF_MONSTERS; i++)
+        {
+            if (newX == monsterX[i] && newY == monstersY[i])
+            {
+                isAMonster = 1;
+                return isAMonster;
+            }
+        }
+
+        if (canMove)
+        {
+            playerX = newX;
+            playerY = newY;
+        }
     }
 
     generateMaze(); // generate updated maze with new player position
+    return 0;
 }
 
 void level1()
@@ -151,7 +175,13 @@ void level1()
         {
             return;
         }
-        movePlayer(input);
+        int checkMonster = movePlayer(input);
+
+        if (checkMonster)
+        {
+            system("cls");
+            break;
+        }
 
         if (playerX == endPointX && playerY == endPointY)
         {
@@ -159,6 +189,8 @@ void level1()
             break;
         }
     }
+    setCoordinates(29, 18);
+    printf("You have been eaten by the monster");
 }
 
 int main()
