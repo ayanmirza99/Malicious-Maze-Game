@@ -128,12 +128,12 @@ void generateMaze(int includeMonsters)
             }
             else if (j == endPointX && i == endPointY) // Check if this position matches end/finish point
             {
-                printf("\033[1;33m %c <FINISH>\033[0m", END_POSITION); // Display finish point
+                printf("\033[1;33m%c <FINISH>\033[0m", END_POSITION); // Display finish point
             }
             else
             {
                 int isObject = 0; // Flag for object presence
-                for (int k = 0; k < NUM_OF_OBJECTS; k++)
+                for (int k = 0; k < (includeMonsters ? NUM_OF_OBJECTS - 10 : NUM_OF_OBJECTS); k++)
                 {
                     if (j == objectX[k] && i == objectY[k]) // Check if object is at this position
                     {
@@ -460,12 +460,12 @@ void level2()
 int main()
 {
     introduction();
+    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
     system("cls");
     Sleep(500);
     level1();
     system("cls");
     Sleep(500);
     level2();
-    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
     return 0;
 }
