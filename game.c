@@ -30,57 +30,79 @@ int playerX, playerY,                                 // Players coordinates
     monsterX[NUM_OF_MONSTERS], monstersY[NUM_OF_MONSTERS],
     hasTimeWatch, lives = 3;
 
+void heading()
+{
+    system("cls");
+    printf("\t\t\t\t\tQUEST FOR SOLEM SPHERE\n");
+    getch();
+    printf("\t\t\t\t  THIS");
+    Sleep(800);
+    printf(" GAME");
+    Sleep(800);
+    printf(" IS");
+    Sleep(800);
+    printf(" BROUGHT");
+    Sleep(800);
+    printf(" T0");
+    Sleep(800);
+    printf(" YOU");
+    Sleep(800);
+    printf(" BY");
+    printf("\n\t\tAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n");
+    getch();
+}
 void introduction()
 {
     system("cls");
     // PlaySoundA(TEXT("C:\\Users\\kk\\Desktop\\project\\intros.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
     int n;
-    printf("\n\n\n\t\tWelcome, Captain Leo Mason...\n");
-    printf("\t\tEarth is in grave danger, and humanity's last hope rests on you.\n\n");
+    printf("\n\n\n\t\t\033[1;32mCommander:\033[0m Welcome, Captain Leo Mason...\n");
+    printf("\t\t\033[1;32mCommander:\033[0m Earth is in grave danger, and humanity's last hope rests on you.\n\n");
 
-    printf("\t\tI am the Commander of Mission Control.\n\t\tWe have entrusted you with a critical task that only you can complete.\n\n");
-    printf("\t\t(1. Understood, Commander. What’s the situation? / 2. Just get to the point, Commander!) (1/2): ");
+    printf("\t\t\033[1;32mCommander:\033[0m I am the Commander of Mission Control.\n\t\tWe have entrusted you with a critical task that only you can complete.\n\n");
+    printf("\t\t\033[1;33mLeo:\033[0m (1. Understood, Commander. What's the situation? / 2. Just get to the point, Commander!) (1/2): ");
     scanf("%d", &n);
 
     if (n == 2)
-        printf("\n\t\tFair enough, Captain. Let's skip the formalities...\n");
+        printf("\n\t\t\033[1;32mCommander:\033[0m Fair enough, Captain. Let's skip the formalities...\n");
     else
-        printf("\n\t\tGlad to see you’re prepared, Captain.\n");
+        printf("\n\t\t\033[1;32mCommander:\033[0m Glad to see you're prepared, Captain.\n");
 
-    printf("\n\t\tEarth is suffering from a massive environmental crisis.\n\t\tThe scientists believe that the Solum Sphere, an artifact on the planet Krypton, is our last hope.\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m Earth is suffering from a massive environmental crisis.\n\t\tThe scientists believe that the Solum Sphere, an artifact on the planet Krypton, is our last hope.\n");
     getch();
 
-    printf("\n\t\tThe Solum Sphere has the power to restore balance to our ecosystem.\n\t\tYour mission is simple, but dangerous: retrieve the Sphere and return.\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m The Solum Sphere has the power to restore balance to our ecosystem.\n\t\tYour mission is simple, but dangerous: retrieve the Sphere and return.\n");
     getch();
 
-    printf("\n\t\tKrypton is not without its perils...\n\t\tYou’ll face three major trials to reach the artifact.\n");
-    printf("\n\t\t(1. Trials? Bring them on! / 2. Do I have a choice?) (1/2): ");
+    printf("\n\t\t\033[1;32mCommander:\033[0m Krypton is not without its perils...\n\t\tYou'll face three major trials to reach the artifact.\n");
+    printf("\n\t\t\033[1;33mLeo:\033[0m (1. Trials? Bring them on! / 2. Do I have a choice?) (1/2): ");
     scanf("%d", &n);
 
     if (n == 2)
-        printf("\n\t\tNot really, Captain. Humanity is counting on you.\n");
+        printf("\n\t\t\033[1;32mCommander:\033[0m Not really, Captain. Humanity is counting on you.\n");
     else
-        printf("\n\t\tThat’s the spirit, Captain!\n");
+        printf("\n\t\t\033[1;32mCommander:\033[0m That's the spirit, Captain!\n");
 
-    printf("\n\t\tFirst, you must navigate the Maze of Shadows, a labyrinth designed to confuse even the most skilled travelers.\n");
-    printf("\t\tIf you make it to the end, a mysterious figure may grant you a gift: a Time Watch with three lives.\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m First, you must navigate the Maze of Shadows, a labyrinth designed to confuse even the most skilled travelers.\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m If you make it to the end, a mysterious figure may grant you a gift: a Time Watch with three lives.\n");
     getch();
 
-    printf("\n\t\tThe Time Watch will grant you a second chance if things go south. But be careful—once all lives are spent, the mission ends.\n\n");
-    printf("\t\t(1. Understood. I’ll be careful. / 2. So, no room for mistakes, huh?) (1/2): ");
+    printf("\n\t\t\033[1;32mCommander:\033[0m The Time Watch will grant you a second chance if things go south. But be careful once all lives are spent, the mission ends.\n\n");
+    printf("\t\t\033[1;33mLeo:\033[0m (1. Understood. I'll be careful. / 2. So, no room for mistakes, huh?) (1/2): ");
     scanf("%d", &n);
 
-    printf("\n\t\tIn the second level, you’ll face a monstrous creature. Your Time Watch may be the only thing standing between you and certain doom.\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m In the second level, you'll face a monstrous creature. Your Time Watch may be the only thing standing between you and certain doom.\n");
     getch();
 
-    printf("\n\t\tFinally, the last challenge awaits in the Heart of Krypton—a maze at the core of the planet where the Solum Sphere resides.\n\t\tRetrieve it, and Earth will be saved.\n\n");
+    printf("\n\t\t\033[1;32mCommander:\033[0m Finally, the last challenge awaits in the Heart of Krypton maze at the core of the planet where the Solum Sphere resides.\n\t\tRetrieve it, and Earth will be saved.\n\n");
 
-    printf("\t\tAre you ready, Captain Leo Mason?\n\t\t(1. For Earth! / 2. Here goes nothing...) (1/2): ");
+    printf("\t\tAre you ready, Captain Leo Mason?");
+    printf("\n\t\t\033[1;33mLeo:\033[0m (1. For Earth! / 2. Here goes nothing...) (1/2): ");
     scanf("%d", &n);
 
-    printf("\n\t\tGood luck, Captain. Humanity’s fate is in your hands. We'll see you when you return.\n");
-    printf("\n\t\tPRESS ANY KEY TO BEGIN YOUR MISSION...");
+    printf("\n\t\t\033[1;32mCommander:\033[0m Good luck, Captain. Humanity's fate is in your hands. We'll see you when you return.\n");
+    printf("\033[1;31m\n\t\tPRESS ANY KEY TO PROCEED\033[0m");
     getch();
 }
 
@@ -128,12 +150,12 @@ void generateMaze(int includeMonsters)
             }
             else if (j == endPointX && i == endPointY) // Check if this position matches end/finish point
             {
-                printf("\033[1;33m %c <FINISH>\033[0m", END_POSITION); // Display finish point
+                printf("\033[1;33m%c <FINISH>\033[0m", END_POSITION); // Display finish point
             }
             else
             {
                 int isObject = 0; // Flag for object presence
-                for (int k = 0; k < NUM_OF_OBJECTS; k++)
+                for (int k = 0; k < (includeMonsters ? NUM_OF_OBJECTS - 10 : NUM_OF_OBJECTS); k++)
                 {
                     if (j == objectX[k] && i == objectY[k]) // Check if object is at this position
                     {
@@ -265,7 +287,6 @@ int movePlayer(char direction, int includeMonsters)
 void level1Intro()
 {
     system("cls");
-
     setCoordinates(36, 10);
     printf("\033[1;34m*Leo's Ship Lands on Krypton*\033[0m\n");
     getch();
@@ -283,7 +304,7 @@ void level1Intro()
     getch();
 
     setCoordinates(36, 18);
-    printf("\033[1;33mLeo:\033[0m Of course, it couldn't be as simple as just walking up to the artifact.\n");
+    printf("\033[1;33mLeo:\033[0m Of course, it couldn't be as simple as just walking up to the artifact.");
     getch();
 
     setCoordinates(36, 20);
@@ -312,6 +333,7 @@ void level1Intro()
 void level1Outro()
 {
     system("cls");
+    int d;
     setCoordinates(36, 10);
     printf("\033[1;33mLeo:\033[0m Ohh man, that was something! WOAHH!! what the hell are you?\n");
     getch();
@@ -325,7 +347,8 @@ void level1Outro()
     getch();
 
     setCoordinates(36, 16);
-    printf("\033[1;33mLeo:\033[0m (1. Well, I'm not just anyone; I'm built different / 2. Yeah, I got lucky)\n");
+    printf("\033[1;33mLeo:\033[0m (1. Well, I'm not just anyone; I'm built different / 2. Yeah, I got lucky) 1/2):  ");
+    scanf("%d", &d);
     getch();
 
     setCoordinates(36, 18);
@@ -347,7 +370,7 @@ void level1Outro()
     getch();
 
     setCoordinates(36, 28);
-    printf("\033[1;35mMysterious Figure:\033[0m But I have to make sure that you are worthty of it, are you?");
+    printf("\033[1;35mMysterious Figure:\033[0m But I have to make sure that you are worthty of it, are you?\n");
     getch();
 
     setCoordinates(36, 30);
@@ -436,6 +459,13 @@ void level2Intro()
 void level1()
 {
     resetConditions();
+    printf("\t\t\tINSTRUCTIONS\n");
+    printf("\t\t\t  W: Up\n");
+    printf("\t\t\t  S: Down\n");
+    printf("\t\t\t  A: Left\n");
+    printf("\t\t\t  S: Right\n");
+    getch();
+    system("cls");
     level1Intro();
     generateMaze(0);
 
@@ -490,8 +520,14 @@ void level2()
 
 int main()
 {
+<<<<<<< HEAD
     srand(time(NULL));
+=======
+    heading();
+    system("cls");
+>>>>>>> 43b13a133b41fc83323fff2ae07e536135780ab9
     introduction();
+    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
     system("cls");
     Sleep(500);
     // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
