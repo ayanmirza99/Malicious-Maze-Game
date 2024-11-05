@@ -402,6 +402,36 @@ void level1Outro()
     getch();
     return;
 }
+void level2Intro()
+{
+    system("cls");
+
+    setCoordinates(36, 10);
+    printf("\033[1;34m*Leo enters the deeper part of Krypton’s maze*\033[0m\n");
+    getch();
+
+    setCoordinates(36, 12);
+    printf("\033[1;33mLeo:\033[0m Alright, things just got darker and scarier...\n");
+    getch();
+
+    setCoordinates(36, 14);
+    printf("\033[1;34m*Monsters are lurking in the shadows*\033[0m\n");
+    getch();
+
+    setCoordinates(36, 16);
+    printf("Beware! If a monster catches you, you will be sent back to the beginning.\n");
+    getch();
+
+    setCoordinates(36, 18);
+    printf("\033[1;31mIf you have time remaining, answer the riddle to continue.\033[0m\n");
+    getch();
+
+    setCoordinates(36, 30);
+    printf("\033[1;31mPRESS ANY KEY TO PROCEED TO LEVEL 3\033[0m");
+    getch();
+
+    system("cls");
+}
 
 void level1()
 {
@@ -428,6 +458,7 @@ void level1()
 void level2()
 {
     resetConditions();
+    level2Intro();
     printf("THE SHADOW MAZE");
     generateMaze(1);
 
@@ -459,13 +490,14 @@ void level2()
 
 int main()
 {
+    srand(time(NULL));
     introduction();
     system("cls");
     Sleep(500);
+    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
     level1();
     system("cls");
     Sleep(500);
     level2();
-    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
     return 0;
 }
