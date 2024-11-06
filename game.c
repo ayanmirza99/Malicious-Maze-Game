@@ -458,37 +458,6 @@ void level1Outro()
     getch();
     return;
 }
-void level2Intro()
-{
-    system("cls");
-
-    setCoordinates(36, 10);
-    printf("\033[1;34m*Leo enters the deeper part of Krypton’s maze*\033[0m\n");
-    getch();
-
-    setCoordinates(36, 12);
-    printf("\033[1;33mLeo:\033[0m Alright, things just got darker and scarier...\n");
-    getch();
-
-    setCoordinates(36, 14);
-    printf("\033[1;34m*Monsters are lurking in the shadows*\033[0m\n");
-    getch();
-
-    setCoordinates(36, 16);
-    printf("Beware! If a monster catches you, you will be sent back to the beginning.\n");
-    getch();
-
-    setCoordinates(36, 18);
-    printf("\033[1;31mIf you have time remaining, answer the riddle to continue.\033[0m\n");
-    getch();
-
-    setCoordinates(36, 30);
-    printf("\033[1;31mPRESS ANY KEY TO PROCEED TO LEVEL 3\033[0m");
-    getch();
-
-    system("cls");
-}
-
 void level1()
 {
     resetConditions();
@@ -613,10 +582,7 @@ void level2()
 {
     resetConditions();
     level2Intro();
-<<<<<<< HEAD
-=======
     system("cls");
->>>>>>> 9da0b822fb4770d3b57e295ca6e26e419d13f882
     printf("THE SHADOW MAZE");
     generateMaze(1);
 
@@ -686,24 +652,13 @@ void level3()
 
 int main()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    srand(time(NULL));
-=======
-=======
     // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
->>>>>>> 9da0b822fb4770d3b57e295ca6e26e419d13f882
     heading();
     system("cls");
->>>>>>> 43b13a133b41fc83323fff2ae07e536135780ab9
-    introduction();
+     introduction();
     system("cls");
     Sleep(500);
-<<<<<<< HEAD
-    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
-=======
     displayInstructions();
->>>>>>> 9da0b822fb4770d3b57e295ca6e26e419d13f882
     level1();
     system("cls");
     Sleep(500);
