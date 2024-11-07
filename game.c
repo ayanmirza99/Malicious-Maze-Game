@@ -33,22 +33,31 @@ int playerX, playerY,                                 // Players coordinates
 void heading()
 {
     system("cls");
-    printf("\t\t\t\t\tQUEST FOR SOLEM SPHERE\n");
+    setCoordinates(70, 10);
+    printf("\033[1;31m QUEST FOR SOLEM SPHERE\n\033[0m");
     getch();
-    printf("\t\t\t\t  THIS");
+    setCoordinates(70, 12);
+    printf("THIS");
     Sleep(800);
+    setCoordinates(74, 12);
     printf(" GAME");
     Sleep(800);
+    setCoordinates(79, 12);
     printf(" IS");
     Sleep(800);
+    setCoordinates(82, 12);
     printf(" BROUGHT");
     Sleep(800);
+    setCoordinates(90, 12);
     printf(" T0");
     Sleep(800);
+    setCoordinates(93, 12);
     printf(" YOU");
     Sleep(800);
+    setCoordinates(97, 12);
     printf(" BY");
-    printf("\n\t\tAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n");
+    setCoordinates(50, 18);
+    printf("\033[1;34mAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n\033[0m");
     getch();
 }
 void introduction()
@@ -141,7 +150,7 @@ void resetConditions()
 
 void generateMaze(int includeMonsters)
 {
-    int offsetX = 50; // Horizontal offset to center the maze
+    int offsetX = 55; // Horizontal offset to center the maze
     int offsetY = 5;  // Vertical offset to center the maze
 
     setCoordinates(offsetX, offsetY);
@@ -464,6 +473,9 @@ void level1()
     resetConditions();
     system("cls");
     level1Intro();
+    system("cls");
+    setCoordinates(74, 2);
+    printf("\033[1;33mThe Vortex Vault\033[0m");
     generateMaze(0);
 
     char input;
@@ -584,7 +596,8 @@ void level2()
     resetConditions();
     level2Intro();
     system("cls");
-    printf("THE SHADOW MAZE");
+    setCoordinates(74, 2);
+    printf("\033[1;33mTHE SHADOW MAZE\033[0m");
     generateMaze(1);
 
     char input;
