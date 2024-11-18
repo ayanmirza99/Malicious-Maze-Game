@@ -718,7 +718,7 @@ void level3() {
         if (checkMonster) {
             system("cls");
             setCoordinates(36, 14);
-            printf("You have been killed by the monster, BEST LUCK NEXT TIME");
+            printf("You have been killed by the monster, Better luck Next Time ");
             exit(0);
 
             if (hasTimeWatch && lives > 0) {
