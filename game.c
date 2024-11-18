@@ -484,7 +484,7 @@ void level1()
         input = getch();
         if (tolower(input) == 'q')
         {
-            return;
+                exit(0);
         }
         movePlayer(input, 0);
         if (playerX == endPointX && playerY == endPointY)
@@ -604,9 +604,9 @@ void level2()
     while (1)
     {
         input = getch();
-        if (tolower(input) == 'q')
+        if (tolower(input) == 'q')//press q to abort the game means exit the game
         {
-            return;
+            exit(0);
         }
         int checkMonster = movePlayer(input, 1);
 
@@ -718,7 +718,8 @@ void level3() {
         if (checkMonster) {
             system("cls");
             setCoordinates(36, 14);
-            printf("You have been killed by the monster");
+            printf("You have been killed by the monster, BEST LUCK NEXT TIME");
+            exit(0);
 
             if (hasTimeWatch && lives > 0) {
                 setCoordinates(36, 16);
@@ -734,7 +735,7 @@ void level3() {
                     scanf(" %c", &choice);
                     if (tolower(choice) == 'q') {
                         timerExpired = 1;
-                        return; // Abort mission if 'q' is pressed
+                        exit(0); // Abort mission if 'q' is pressed
                     }
                 } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
 
