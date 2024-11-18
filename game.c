@@ -5,7 +5,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <ctype.h>
-#include<pthread.h>
+#include <pthread.h>
 
 #define GRID_SIZE 25
 #define PLAYER 'U'
