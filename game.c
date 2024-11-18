@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <ctype.h>
+#include<pthread.h>
 
 #define GRID_SIZE 25
 #define PLAYER 'U'
@@ -33,22 +34,31 @@ int playerX, playerY,                                 // Players coordinates
 void heading()
 {
     system("cls");
-    printf("\t\t\t\t\tQUEST FOR SOLEM SPHERE\n");
+    setCoordinates(70, 10);
+    printf("\033[1;31m QUEST FOR SOLEM SPHERE\n\033[0m");
     getch();
-    printf("\t\t\t\t  THIS");
+    setCoordinates(70, 12);
+    printf("THIS");
     Sleep(800);
+    setCoordinates(74, 12);
     printf(" GAME");
     Sleep(800);
+    setCoordinates(79, 12);
     printf(" IS");
     Sleep(800);
+    setCoordinates(82, 12);
     printf(" BROUGHT");
     Sleep(800);
+    setCoordinates(90, 12);
     printf(" T0");
     Sleep(800);
+    setCoordinates(93, 12);
     printf(" YOU");
     Sleep(800);
+    setCoordinates(97, 12);
     printf(" BY");
-    printf("\n\t\tAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n");
+    setCoordinates(50, 18);
+    printf("\033[1;34mAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n\033[0m");
     getch();
 }
 void introduction()
@@ -119,19 +129,29 @@ void resetConditions()
 
     for (int i = 0; i < NUM_OF_OBJECTS; i++) // looping till NUM_OF_OBJECTS and populating the X and Y coordinate arrays of objects
     {
-        objectX[i] = rand() % GRID_SIZE;
-        objectY[i] = rand() % GRID_SIZE;
+        int xCoordinate = rand() % GRID_SIZE;
+        int yCoordinate = rand() % GRID_SIZE;
+        if ((xCoordinate != 1 || yCoordinate != 1) && (xCoordinate != 24 || yCoordinate != 24))
+        {
+            objectX[i] = rand() % GRID_SIZE;
+            objectY[i] = rand() % GRID_SIZE;
+        }
     }
     for (int i = 0; i < NUM_OF_MONSTERS; i++) // looping till NUM_OF_OBJECTS and populating the X and Y coordinate arrays of objects
     {
-        monsterX[i] = rand() % GRID_SIZE;
-        monstersY[i] = rand() % GRID_SIZE;
+        int xCoordinate = rand() % GRID_SIZE;
+        int yCoordinate = rand() % GRID_SIZE;
+        if ((xCoordinate != 1 || yCoordinate != 1) && (xCoordinate != 24 || yCoordinate != 24))
+        {
+            monsterX[i] = xCoordinate;
+            monstersY[i] = yCoordinate;
+        }
     }
 }
 
 void generateMaze(int includeMonsters)
 {
-    int offsetX = 50; // Horizontal offset to center the maze
+    int offsetX = 55; // Horizontal offset to center the maze
     int offsetY = 5;  // Vertical offset to center the maze
 
     setCoordinates(offsetX, offsetY);
@@ -155,7 +175,7 @@ void generateMaze(int includeMonsters)
             else
             {
                 int isObject = 0; // Flag for object presence
-                for (int k = 0; k < (includeMonsters ? NUM_OF_OBJECTS - 10 : NUM_OF_OBJECTS); k++)
+                for (int k = 0; k < NUM_OF_OBJECTS; k++)
                 {
                     if (j == objectX[k] && i == objectY[k]) // Check if object is at this position
                     {
@@ -283,6 +303,30 @@ int movePlayer(char direction, int includeMonsters)
     generateMaze(includeMonsters); // generate updated maze with new player position
     return 0;
 }
+void displayInstructions()
+{
+    system("cls");
+    printf("\033[1;34m");
+    setCoordinates(50, 5);
+    printf("+----------------------------------------------------+\n");
+    setCoordinates(50, 6);
+    printf("|                    INSTRUCTIONS                    |\n");
+    setCoordinates(50, 7);
+    printf("|                    W: Up                           |\n");
+    setCoordinates(50, 8);
+    printf("|                    S: Down                         |\n");
+    setCoordinates(50, 9);
+    printf("|                    A: Left                         |\n");
+    setCoordinates(50, 10);
+    printf("|                    D: Right                        |\n");
+    setCoordinates(50, 11);
+    printf("+----------------------------------------------------+\n");
+    printf("\033[0m");
+
+    setCoordinates(64, 14);
+    printf("\033[1;31mPRESS ANY KEY TO CONTINUE\033[0m");
+    getch();
+}
 
 void level1Intro()
 {
@@ -349,7 +393,6 @@ void level1Outro()
     setCoordinates(36, 16);
     printf("\033[1;33mLeo:\033[0m (1. Well, I'm not just anyone; I'm built different / 2. Yeah, I got lucky) 1/2):  ");
     scanf("%d", &d);
-    getch();
 
     setCoordinates(36, 18);
     printf("\033[1;35mMysterious Figure:\033[0m Certainly.\n");
@@ -425,18 +468,14 @@ void level1Outro()
     getch();
     return;
 }
-
 void level1()
 {
     resetConditions();
-    printf("\t\t\tINSTRUCTIONS\n");
-    printf("\t\t\t  W: Up\n");
-    printf("\t\t\t  S: Down\n");
-    printf("\t\t\t  A: Left\n");
-    printf("\t\t\t  S: Right\n");
-    getch();
     system("cls");
     level1Intro();
+    system("cls");
+    setCoordinates(74, 2);
+    printf("\033[1;33mThe Vortex Vault\033[0m");
     generateMaze(0);
 
     char input;
@@ -445,7 +484,7 @@ void level1()
         input = getch();
         if (tolower(input) == 'q')
         {
-            return;
+                exit(0);
         }
         movePlayer(input, 0);
         if (playerX == endPointX && playerY == endPointY)
@@ -455,49 +494,286 @@ void level1()
         }
     }
 }
+
+void level2Intro()
+{
+    system("cls");
+
+    setCoordinates(36, 10);
+    printf("\033[1;34m*Leo's journey continues as he ventures deeper into Krypton*\033[0m\n");
+    getch();
+
+    setCoordinates(36, 12);
+    printf("\033[1;33mLeo:\033[0m These mountains feel like they are closing in. I need to hurry...\n");
+    getch();
+
+    setCoordinates(36, 14);
+    printf("\033[1;34m*Suddenly, a voice echoes through the valley*\033[0m\n");
+    getch();
+
+    setCoordinates(36, 16);
+    printf("\033[1;37mVoice:\033[0m Leo... is that you?\n");
+    getch();
+
+    setCoordinates(36, 18);
+    printf("\033[1;33mLeo:\033[0m Who's there? Who are you?\n");
+    getch();
+
+    setCoordinates(36, 20);
+    printf("\033[1;37mVoice:\033[0m It's me... Kaden. Your old mentor... You don't remember me?\n");
+    getch();
+
+    setCoordinates(36, 22);
+    printf("\033[1;33mLeo:\033[0m Kaden...? How... how is this possible?\n");
+    getch();
+
+    setCoordinates(36, 24);
+    printf("\033[1;37mKaden:\033[0m I was sent here years ago. The Solum Sphere... it trapped me here. I can help you... but only if you help me escape.\n");
+    getch();
+
+    setCoordinates(36, 26);
+    printf("\033[1;33mLeo:\033[0m What do I need to do?\n");
+    getch();
+
+    setCoordinates(36, 28);
+    printf("\033[1;37mKaden:\033[0m Trust me, Leo. But beware, the next level is filled with monsters that feed on fear. \n");
+    getch();
+
+    setCoordinates(36, 30);
+    printf("They can sense your fear, and it makes them stronger. They won't just kill you; they can take everything from you.\n");
+    getch();
+
+    setCoordinates(36, 32);
+    printf("\033[1;33mLeo:\033[0m I won’t give in to fear!\n");
+    getch();
+
+    setCoordinates(36, 34);
+    printf("\033[1;37mKaden:\033[0m Stay strong, Leo. If you solve the puzzle ahead, you can free me. Let's finish this, once and for all.\n");
+    getch();
+
+    setCoordinates(64, 36);
+    printf("\033[1;31mPRESS ANY KEY TO PROCEED\033[0m");
+    getch();
+    system("cls");
+}
+
+void level2Outro()
+{
+    system("cls");
+
+    setCoordinates(36, 12);
+    printf("\033[1;33mLeo:\033[0m I can't believe I made it through those monsters...\n");
+    getch();
+
+    setCoordinates(36, 14);
+    printf("\033[1;35mKaden:\033[0m You did well, Leo. But we must stay alert. Only one level remains.\n");
+    getch();
+
+    setCoordinates(36, 16);
+    printf("\033[1;33mLeo:\033[0m What happens in the last level?\n");
+    getch();
+
+    setCoordinates(36, 18);
+    printf("\033[1;35mKaden:\033[0m The Solum Sphere is waiting for us there. I am trapped, but if you can reach it, we can finally go home and save Earth.\n");
+    getch();
+
+    setCoordinates(36, 20);
+    printf("\033[1;33mLeo:\033[0m I won't let you down, Kaden.\n");
+    getch();
+
+    setCoordinates(36, 22);
+    printf("\033[1;35mKaden:\033[0m Then let's finish this, once and for all.\n");
+    getch();
+
+    setCoordinates(64, 24);
+    printf("\033[1;31mPRESS ANY KEY TO CONTINUE TO THE NEXT LEVEL\033[0m");
+    getch();
+    system("cls");
+}
+
 void level2()
 {
     resetConditions();
-    printf("THE SHADOW MAZE");
+    level2Intro();
+    system("cls");
+    setCoordinates(74, 2);
+    printf("\033[1;33mTHE SHADOW MAZE\033[0m");
     generateMaze(1);
 
     char input;
     while (1)
     {
         input = getch();
-        if (tolower(input) == 'q')
+        if (tolower(input) == 'q')//press q to abort the game means exit the game
         {
-            return;
+            exit(0);
         }
         int checkMonster = movePlayer(input, 1);
 
         if (checkMonster)
         {
             system("cls");
-            setCoordinates(29, 18);
-            printf("You have been eaten by the monster");
-            break;
+            setCoordinates(36, 14);
+            printf("You have been killed by the monster");
+
+            if (hasTimeWatch && lives > 0)
+            {
+                setCoordinates(36, 16);
+                printf("TimeWatch - remaining charges: %d.", lives);
+                setCoordinates(36, 18);
+
+                char choice;
+                do
+                {
+                    setCoordinates(36, 20);
+                    printf("Press q to abort your mission\n");
+                    setCoordinates(36, 21);
+                    printf("Do you want to use the TimeWatch [y/n]: ");
+                    scanf(" %c", &choice);
+                    if (tolower(choice) == 'q')
+                    {
+                        return; // Abort mission if 'q' is pressed
+                    }
+                } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+
+                if (tolower(choice) == 'y')
+                {
+                    lives--;  // Decrement lives when using TimeWatch
+                    level2(); // Restart level
+                    return;   // Exit current level execution
+                }
+            }
+            else
+            {
+                break;
+            }
         }
 
         if (playerX == endPointX && playerY == endPointY)
         {
-            printf("Congratulations! You've reached the endpoint.\n");
+            level2Outro();
+            system("cls");
             break;
         }
     }
 }
+int timerExpired = 0;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for thread safety
+
+
+
+// Function to display and run the timer
+void *timerFunction(void *arg) {
+    int timeLeft = 40; // Set the timer duration
+
+    while (timeLeft > 0 && !timerExpired) {
+        Sleep(1000); // Wait for 1 second
+        timeLeft--;
+
+        // Print the timer at a fixed position without affecting the maze
+        pthread_mutex_lock(&mutex);
+        setCoordinates(2, 2); // Choose a position away from the maze
+        printf("\033[1;31mTime Left: %d seconds   \033[0m", timeLeft); // Print timer with padding
+        fflush(stdout);
+        pthread_mutex_unlock(&mutex);
+
+        if (timeLeft == 0) {
+            timerExpired = 1;
+            pthread_mutex_lock(&mutex);
+            setCoordinates(36, 14);
+            printf("\n\033[1;31mTime's up! You failed to complete the maze.\033[0m");
+            fflush(stdout);
+            pthread_mutex_unlock(&mutex);
+            return NULL;
+        }
+    }
+    return NULL;
+}
+
+void level3() {
+    pthread_t timerThread;
+
+    // Create the timer thread
+    pthread_create(&timerThread, NULL, timerFunction, NULL);
+
+    resetConditions();
+    system("cls");
+    setCoordinates(74, 2);
+    printf("\033[1;33mTHE SHADOW MAZE - Level 3\033[0m");
+    generateMaze(2); // Assuming level 3 uses a different maze ID
+
+    char input;
+    while (!timerExpired) {
+        input = getch();
+        if (tolower(input) == 'q') {
+            timerExpired = 1;
+            break;
+        }
+
+        // Locking mutex for safe player movement
+        pthread_mutex_lock(&mutex);
+        int checkMonster = movePlayer(input, 2);
+        pthread_mutex_unlock(&mutex);
+
+        if (checkMonster) {
+            system("cls");
+            setCoordinates(36, 14);
+            printf("You have been killed by the monster BETTER LUCK NEXT TIME");
+            exit(0);
+
+            if (hasTimeWatch && lives > 0) {
+                setCoordinates(36, 16);
+                printf("TimeWatch - remaining charges: %d.", lives);
+                setCoordinates(36, 18);
+
+                char choice;
+                do {
+                    setCoordinates(36, 20);
+                    printf("Press q to abort your mission\n");
+                    setCoordinates(36, 21);
+                    printf("Do you want to use the TimeWatch [y/n]: ");
+                    scanf(" %c", &choice);
+                    if (tolower(choice) == 'q') {
+                        timerExpired = 1;
+                        exit(0); // Abort mission if 'q' is pressed
+                    }
+                } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+
+                if (tolower(choice) == 'y') {
+                    lives--;  // Decrement lives when using TimeWatch
+                    timerExpired = 1; // Stop current timer
+                    level3(); // Restart level
+                    return;   // Exit current level execution
+                }
+            } else {
+                break;
+            }
+        }
+
+        if (playerX == endPointX && playerY == endPointY) {
+            timerExpired = 1; // Stop the timer
+            system("cls");
+            break;
+        }
+    }
+
+    pthread_join(timerThread, NULL); // Wait for the timer thread to finish
+}
 
 int main()
 {
+    // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
     heading();
     system("cls");
-    introduction();
-    // system("\"C:/Users/Asad Mirza/Desktop/Malicious-Maze-Game/setup.bat\"");
+     introduction();
     system("cls");
     Sleep(500);
+    displayInstructions();
     level1();
     system("cls");
     Sleep(500);
     level2();
+    system("cls");
+    level3();
     return 0;
 }
