@@ -485,6 +485,7 @@ void level1()
         if (tolower(input) == 'q')
         {
             exit(0);
+            exit(0);
         }
         movePlayer(input, 0);
         if (playerX == endPointX && playerY == endPointY)
@@ -605,6 +606,7 @@ void level2()
     {
         input = getch();
         if (tolower(input) == 'q') // press q to abort the game means exit the game
+        if (tolower(input) == 'q') // press q to abort the game means exit the game
         {
             exit(0);
         }
@@ -663,8 +665,12 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for thread safety
 // Function to display and run the timer
 void *timerFunction(void *arg)
 {
+void *timerFunction(void *arg)
+{
     int timeLeft = 40; // Set the timer duration
 
+    while (timeLeft > 0 && !timerExpired)
+    {
     while (timeLeft > 0 && !timerExpired)
     {
         Sleep(1000); // Wait for 1 second
@@ -673,10 +679,13 @@ void *timerFunction(void *arg)
         // Print the timer at a fixed position without affecting the maze
         pthread_mutex_lock(&mutex);
         setCoordinates(2, 2);                                          // Choose a position away from the maze
+        setCoordinates(2, 2);                                          // Choose a position away from the maze
         printf("\033[1;31mTime Left: %d seconds   \033[0m", timeLeft); // Print timer with padding
         fflush(stdout);
         pthread_mutex_unlock(&mutex);
 
+        if (timeLeft == 0)
+        {
         if (timeLeft == 0)
         {
             timerExpired = 1;
@@ -693,6 +702,8 @@ void *timerFunction(void *arg)
 
 void level3()
 {
+void level3()
+{
     pthread_t timerThread;
 
     // Create the timer thread
@@ -707,7 +718,11 @@ void level3()
     char input;
     while (!timerExpired)
     {
+    while (!timerExpired)
+    {
         input = getch();
+        if (tolower(input) == 'q')
+        {
         if (tolower(input) == 'q')
         {
             timerExpired = 1;
@@ -721,6 +736,8 @@ void level3()
 
         if (checkMonster)
         {
+        if (checkMonster)
+        {
             system("cls");
             setCoordinates(36, 14);
             printf("You have been killed by the monster, Better luck Next Time ");
@@ -732,6 +749,49 @@ void level3()
                 break;
             }
         }
+
+            if (hasTimeWatch && lives > 0)
+            {
+                setCoordinates(36, 16);
+                printf("TimeWatch - remaining charges: %d.", lives);
+                setCoordinates(36, 18);
+
+                char choice;
+                do
+                {
+                    setCoordinates(36, 20);
+                    printf("Press q to abort your mission\n");
+                    setCoordinates(36, 21);
+                    printf("Do you want to use the TimeWatch [y/n]: ");
+                    scanf(" %c", &choice);
+                    if (tolower(choice) == 'q')
+                    {
+                        timerExpired = 1;
+                        exit(0); // Abort mission if 'q' is pressed
+                    }
+                } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+
+                if (tolower(choice) == 'y')
+                {
+                    lives--;          // Decrement lives when using TimeWatch
+                    timerExpired = 1; // Stop current timer
+                    level3();         // Restart level
+                    return;           // Exit current level execution
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (playerX == endPointX && playerY == endPointY)
+        {
+            timerExpired = 1; // Stop the timer
+            system("cls");
+            break;
+        }
+    }
 
         pthread_join(timerThread, NULL); // Wait for the timer thread to finish
     }
@@ -752,3 +812,20 @@ int main(){
         level3();
         return 0;
     }
+int main()
+{
+    // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
+    heading();
+    system("cls");
+    introduction();
+    system("cls");
+    Sleep(500);
+    displayInstructions();
+    level1();
+    system("cls");
+    Sleep(500);
+    level2();
+    system("cls");
+    level3();
+    return 0;
+}
