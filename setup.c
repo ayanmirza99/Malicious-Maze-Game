@@ -18,10 +18,5 @@ int main()
             ":end\n");
 
     fclose(fp);
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 9da0b822fb4770d3b57e295ca6e26e419d13f882
     return 0;
 }
