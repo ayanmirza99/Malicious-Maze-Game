@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+=======
+  "files.associations": {
+    "stdlib.h": "c"
+  },
+>>>>>>> bd5f0411df4c1e22be2ab3cd78b584f80ab6ef6b
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
