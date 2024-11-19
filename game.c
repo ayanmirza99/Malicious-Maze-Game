@@ -710,7 +710,7 @@ void level3()
     system("cls");
     setCoordinates(74, 2);
     printf("\033[1;33mTHE SHADOW MAZE - Level 3\033[0m");
-    generateMaze(2); // Assuming level 3 uses a different maze ID
+    generateMaze(2);
 
     char input;
     while (!timerExpired)
@@ -742,84 +742,32 @@ void level3()
                     break;
                 }
             }
-
-            if (hasTimeWatch && lives > 0)
+            if (playerX == endPointX && playerY == endPointY)
             {
-                setCoordinates(36, 16);
-                printf("TimeWatch - remaining charges: %d.", lives);
-                setCoordinates(36, 18);
-
-                char choice;
-                do
-                {
-                    setCoordinates(36, 20);
-                    printf("Press q to abort your mission\n");
-                    setCoordinates(36, 21);
-                    printf("Do you want to use the TimeWatch [y/n]: ");
-                    scanf(" %c", &choice);
-                    if (tolower(choice) == 'q')
-                    {
-                        timerExpired = 1;
-                        exit(0); // Abort mission if 'q' is pressed
-                    }
-                } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
-
-                if (tolower(choice) == 'y')
-                {
-                    lives--;          // Decrement lives when using TimeWatch
-                    timerExpired = 1; // Stop current timer
-                    level3();         // Restart level
-                    return;           // Exit current level execution
-                }
-            }
-            else
-            {
+                timerExpired = 1; // Stop the timer
+                system("cls");
                 break;
             }
         }
 
-        if (playerX == endPointX && playerY == endPointY)
-        {
-            timerExpired = 1; // Stop the timer
-            system("cls");
-            break;
-        }
+        // pthread_join(timerThread, NULL); // Wait for the timer thread to finish
     }
-
-    pthread_join(timerThread, NULL); // Wait for the timer thread to finish
 }
 
 int main()
 {
     // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
-    heading();
-    system("cls");
-    introduction();
-    system("cls");
-    Sleep(500);
-    displayInstructions();
-    level1();
-    system("cls");
-    Sleep(500);
-    level2();
-    system("cls");
-    level3();
-    return 0;
-}
-int main()
-{
-    // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
-    heading();
-    system("cls");
-    introduction();
-    system("cls");
-    Sleep(500);
-    displayInstructions();
-    level1();
-    system("cls");
-    Sleep(500);
-    level2();
-    system("cls");
+    // heading();
+    // system("cls");
+    // introduction();
+    // system("cls");
+    // Sleep(500);
+    // displayInstructions();
+    // level1();
+    // system("cls");
+    // Sleep(500);
+    // level2();
+    // system("cls");
     level3();
     return 0;
 }
