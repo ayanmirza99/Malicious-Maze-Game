@@ -201,14 +201,14 @@ int riddle()
     char *riddles[] = {
         "What has keys but can't open locks?",
         "What has to be broken before you can use it?",
-        "What has a ring but no finger?"
-        "What comes once in a minute, twice in a moment, but never in a thousand years?"
+        "What has a ring but no finger?",
+        "What comes once in a minute, twice in a moment, but never in a thousand years?",
         "What is always in front of you but can't be seen?"};
     char *answers[] = {
         "keyboard",
         "egg",
-        "telephone"
-        "m"
+        "telephone",
+        "m",
         "future"};
 
     srand(time(0));
