@@ -579,14 +579,8 @@ void level2()
             input = getch();
             if (tolower(input) == 'q')
             {
-<<<<<<< HEAD
                 exit(0); // Exit the game if 'q' is pressed
             }
-=======
-            //     setCoordinates(36, 16);
-            //     printf("TimeWatch - remaining charges: %d.", lives);
-            //     setCoordinates(36, 18);
->>>>>>> azan
 
             if (!move)
             {
@@ -772,20 +766,20 @@ void level3()
 
 int main()
 {
-    // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
-    // heading();
-    // system("cls");
-    // introduction();
-    // system("cls");
-    // Sleep(500);
-    // displayInstructions();
-    // level1();
-    // system("cls");
-    // Sleep(500);
-    // level2Intro();
-    // level2();
-    // level2Outro();
-    // system("cls");
+    ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
+    heading();
+    system("cls");
+    introduction();
+    system("cls");
+    Sleep(500);
+    displayInstructions();
+    level1();
+    system("cls");
+    Sleep(500);
+    level2Intro();
+    level2();
+    level2Outro();
+    system("cls");
     level3();
     return 0;
 }
