@@ -485,7 +485,6 @@ void level1()
         if (tolower(input) == 'q')
         {
             exit(0);
-            exit(0);
         }
         movePlayer(input, 0);
         if (playerX == endPointX && playerY == endPointY)
@@ -595,108 +594,102 @@ void level2Outro()
 void level2()
 {
     resetConditions();
-    level2Intro();
     system("cls");
     setCoordinates(74, 2);
     printf("\033[1;33mTHE SHADOW MAZE\033[0m");
     generateMaze(1);
 
     char input;
+    int move = 0; // 0 means active, 1 means paused
+
     while (1)
     {
-        input = getch();
-        if (tolower(input) == 'q')     // press q to abort the game means exit the game
-            if (tolower(input) == 'q') // press q to abort the game means exit the game
-            {
-                exit(0);
+        if (_kbhit()) {
+            input = getch();
+            if (tolower(input) == 'q') {
+                exit(0); // Exit the game if 'q' is pressed
             }
-        int checkMonster = movePlayer(input, 1);
 
-        if (checkMonster)
-        {
-            system("cls");
-            setCoordinates(36, 14);
-            printf("You have been killed by the monster");
+            if (!move) {
+                int checkMonster = movePlayer(input, 1);
 
-            if (hasTimeWatch && lives > 0)
-            {
-                setCoordinates(36, 16);
-                printf("TimeWatch - remaining charges: %d.", lives);
-                setCoordinates(36, 18);
+                if (checkMonster) {
+                    move=1;
+                    setCoordinates(36, 14);
+                    printf("You have been killed by the monster.Press R to restart.");
 
-                char choice;
-                do
-                {
-                    setCoordinates(36, 20);
-                    printf("Press q to abort your mission\n");
-                    setCoordinates(36, 21);
-                    printf("Do you want to use the TimeWatch [y/n]: ");
-                    scanf(" %c", &choice);
-                    if (tolower(choice) == 'q')
-                    {
-                        return; // Abort mission if 'q' is pressed
+                    if (hasTimeWatch && lives > 0) {
+                        setCoordinates(36, 16);
+                        printf("TimeWatch - remaining charges: %d.", lives);
+                        setCoordinates(36, 18);
+
+                        char choice;
+                        do {
+                            setCoordinates(36, 20);
+                            printf("Press q to abort your mission\n");
+                            setCoordinates(36, 21);
+                            printf("Do you want to use the TimeWatch [y/n]: ");
+                            scanf(" %c", &choice);
+                            if (tolower(choice) == 'q') {
+                                exit(0); // Abort mission if 'q' is pressed
+                            }
+                        } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+
+                        if (tolower(choice) == 'y') {
+                            lives--;  // Decrement lives when using TimeWatch
+                            level2(); // Restart level
+                            exit(0);   // Exit current level execution
+                        } else {
+                            move= 1; // Freeze the game on death if no lives left
+                        }
+                    } else {
+                        move = 1; // Freeze the game on death if no TimeWatch
+                        exit(0);
+                        }
                     }
-                } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+                }
 
-                if (tolower(choice) == 'y')
-                {
-                    lives--;  // Decrement lives when using TimeWatch
-                    level2(); // Restart level
-                    return;   // Exit current level execution
+                if (playerX == endPointX && playerY == endPointY) {
+                    system("cls");
+                    break;
                 }
             }
-            else
-            {
-                break;
-            }
-        }
-
-        if (playerX == endPointX && playerY == endPointY)
-        {
-            level2Outro();
-            system("cls");
-            break;
         }
     }
-}
+
 int timerExpired = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for thread safety
 
+// Function to display and run the timer
 void *timerFunction(void *arg)
 {
     int timeLeft = 40; // Set the timer duration
 
     while (timeLeft > 0 && !timerExpired)
     {
-        while (timeLeft > 0 && !timerExpired)
-        {
-            Sleep(1000); // Wait for 1 second
-            timeLeft--;
+        Sleep(1000); // Wait for 1 second
+        timeLeft--;
 
-            // Print the timer at a fixed position without affecting the maze
+        // Print the timer at a fixed position without affecting the maze
+        pthread_mutex_lock(&mutex);
+        setCoordinates(2, 2);                                          // Choose a position away from the maze
+        printf("\033[1;31mTime Left: %d seconds   \033[0m", timeLeft); // Print timer with padding
+        fflush(stdout);
+        pthread_mutex_unlock(&mutex);
+
+        if (timeLeft == 0)
+        {
+            timerExpired = 1;
             pthread_mutex_lock(&mutex);
-            setCoordinates(2, 2);                                          // Choose a position away from the maze
-            setCoordinates(2, 2);                                          // Choose a position away from the maze
-            printf("\033[1;31mTime Left: %d seconds   \033[0m", timeLeft); // Print timer with padding
+            setCoordinates(36, 14);
+            printf("\n\033[1;31mTime's up! You failed to complete the maze.\033[0m");
             fflush(stdout);
             pthread_mutex_unlock(&mutex);
-
-            if (timeLeft == 0)
-            {
-                if (timeLeft == 0)
-                {
-                    timerExpired = 1;
-                    pthread_mutex_lock(&mutex);
-                    setCoordinates(36, 14);
-                    printf("\n\033[1;31mTime's up! You failed to complete the maze.\033[0m");
-                    fflush(stdout);
-                    pthread_mutex_unlock(&mutex);
-                    return NULL;
-                }
-            }
             return NULL;
+            exit(0);
         }
     }
+    return NULL;
 }
 
 void level3()
@@ -710,53 +703,56 @@ void level3()
     system("cls");
     setCoordinates(74, 2);
     printf("\033[1;33mTHE SHADOW MAZE - Level 3\033[0m");
-    generateMaze(2);
+    generateMaze(2); // Assuming level 3 uses a different maze ID
 
     char input;
+    int move = 0; // 0 means active, 1 means paused
+
     while (!timerExpired)
     {
-        input = getch();
-        if (tolower(input) == 'q')
-        {
-            if (tolower(input) == 'q')
-            {
-                timerExpired = 1;
-                exit(0);
+        if (_kbhit()) {
+            input = getch();
+
+            if (tolower(input) == 'q') {
+                timerExpired = 1; // End the level if 'q' is pressed
+                break;
             }
 
-            // Locking mutex for safe player movement
-            pthread_mutex_lock(&mutex);
-            int checkMonster = movePlayer(input, 2);
-            pthread_mutex_unlock(&mutex);
+            if (!move) {
+                pthread_mutex_lock(&mutex);
+                int checkMonster = movePlayer(input, 2); // Process player movement
+                pthread_mutex_unlock(&mutex);
 
-            if (checkMonster)
-            {
-                system("cls");
-                setCoordinates(36, 14);
-                printf("You have been killed by the monster, Better luck Next Time ");
-                exit(0);
-                if (playerX == endPointX && playerY == endPointY)
-                {
-                    timerExpired = 1; // Stop the timer
-                    system("cls");
+                if (checkMonster) {
+                    timerExpired=1;
+                    move=1;
+                    setCoordinates(36, 14);
+                    printf("You have been killed by the monster. Better luck next time.");// Freeze the game after death   
+                    }
+                }   
+                
+
+                if (playerX == endPointX && playerY == endPointY) {
+                    timerExpired = 1; // Stop the timer if the player reaches the endpoint
+                    move=1;
                     break;
                 }
             }
-            if (playerX == endPointX && playerY == endPointY)
-            {
-                timerExpired = 1; // Stop the timer
-                system("cls");
-                break;
-            }
         }
+    
 
-        // pthread_join(timerThread, NULL); // Wait for the timer thread to finish
-    }
+    // if (timerExpired) {
+    //     move=1;
+    //     setCoordinates(36, 16);
+    //     printf("Time's up! The maze has defeated you.");
+    // }
+
+    pthread_join(timerThread, NULL); // Wait for the timer thread to finish
 }
 
 int main()
 {
-    // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
+    //ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
     // heading();
     // system("cls");
     // introduction();
@@ -766,7 +762,9 @@ int main()
     // level1();
     // system("cls");
     // Sleep(500);
+    // level2Intro();
     // level2();
+    // level2Outro();
     // system("cls");
     level3();
     return 0;
