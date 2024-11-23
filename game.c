@@ -29,7 +29,7 @@ int playerX, playerY,                                 // Players coordinates
     objectX[NUM_OF_OBJECTS], objectY[NUM_OF_OBJECTS], // array of coordinates of all objects in the maze
     endPointX, endPointY,                             // endpoint/finishpoint coordinates
     monsterX[NUM_OF_MONSTERS], monstersY[NUM_OF_MONSTERS],
-    hasTimeWatch, lives = 3;
+    hasTimeWatch, lives = 1;
 
 void heading()
 {
@@ -37,25 +37,25 @@ void heading()
     setCoordinates(70, 10);
     printf("\033[1;31m QUEST FOR SOLEM SPHERE\n\033[0m");
     getch();
-    setCoordinates(70, 12);
+    setCoordinates(66, 12);
     printf("THIS");
     Sleep(800);
-    setCoordinates(74, 12);
+    setCoordinates(70, 12);
     printf(" GAME");
     Sleep(800);
-    setCoordinates(79, 12);
+    setCoordinates(75, 12);
     printf(" IS");
     Sleep(800);
-    setCoordinates(82, 12);
+    setCoordinates(78, 12);
     printf(" BROUGHT");
     Sleep(800);
-    setCoordinates(90, 12);
+    setCoordinates(86, 12);
     printf(" T0");
     Sleep(800);
-    setCoordinates(93, 12);
+    setCoordinates(89, 12);
     printf(" YOU");
     Sleep(800);
-    setCoordinates(97, 12);
+    setCoordinates(93, 12);
     printf(" BY");
     setCoordinates(50, 18);
     printf("\033[1;34mAYAN MIRZA\t\t\tM.SAAD BAIG\t\t\tSYED AZAN\n\033[0m");
@@ -67,53 +67,31 @@ void introduction()
     // PlaySoundA(TEXT("C:\\Users\\kk\\Desktop\\project\\intros.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
     int n;
-    printf("\n\n\n\t\t\033[1;32mCommander:\033[0m Welcome, Captain Leo Mason...\n");
-    printf("\t\t\033[1;32mCommander:\033[0m Earth is in grave danger, and humanity's last hope rests on you.\n\n");
+printf("\n\n\n\t\t\033[1;32mCommander:\033[0m Welcome, Captain Leo Mason. Earth is in grave danger, and only you can save it.\n");
+printf("\t\t\033[1;32mCommander:\033[0m Your mission: Retrieve the Solum Sphere from Planet Krypton. It's our last hope.\n\n");
 
-    printf("\t\t\033[1;32mCommander:\033[0m I am the Commander of Mission Control.\n\t\tWe have entrusted you with a critical task that only you can complete.\n\n");
-    printf("\t\t\033[1;33mLeo:\033[0m (1. Understood, Commander. What's the situation? / 2. Just get to the point, Commander!) (1/2): ");
-    scanf("%d", &n);
+printf("\t\t\033[1;33mLeo:\033[0m (1. Understood, Commander. What's the situation? / 2. Just get to the point!) (1/2): ");
+scanf("%d", &n);
 
-    if (n == 2)
-        printf("\n\t\t\033[1;32mCommander:\033[0m Fair enough, Captain. Let's skip the formalities...\n");
-    else
-        printf("\n\t\t\033[1;32mCommander:\033[0m Glad to see you're prepared, Captain.\n");
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m Earth is suffering from a massive environmental crisis.\n\t\tThe scientists believe that the Solum Sphere, an artifact on the planet Krypton, is our last hope.\n");
-    getch();
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m The Solum Sphere has the power to restore balance to our ecosystem.\n\t\tYour mission is simple, but dangerous: retrieve the Sphere and return.\n");
-    getch();
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m Krypton is not without its perils...\n\t\tYou'll face three major trials to reach the artifact.\n");
-    printf("\n\t\t\033[1;33mLeo:\033[0m (1. Trials? Bring them on! / 2. Do I have a choice?) (1/2): ");
-    scanf("%d", &n);
-
-    if (n == 2)
-        printf("\n\t\t\033[1;32mCommander:\033[0m Not really, Captain. Humanity is counting on you.\n");
-    else
-        printf("\n\t\t\033[1;32mCommander:\033[0m That's the spirit, Captain!\n");
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m First, you must navigate the Maze of Shadows, a labyrinth designed to confuse even the most skilled travelers.\n");
-    printf("\n\t\t\033[1;32mCommander:\033[0m If you make it to the end, a mysterious figure may grant you a gift: a Time Watch with three lives.\n");
-    getch();
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m The Time Watch will grant you a second chance if things go south. But be careful once all lives are spent, the mission ends.\n\n");
-    printf("\t\t\033[1;33mLeo:\033[0m (1. Understood. I'll be careful. / 2. So, no room for mistakes, huh?) (1/2): ");
-    scanf("%d", &n);
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m In the second level, you'll face a monstrous creature. Your Time Watch may be the only thing standing between you and certain doom.\n");
-    getch();
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m Finally, the last challenge awaits in the Heart of Krypton maze at the core of the planet where the Solum Sphere resides.\n\t\tRetrieve it, and Earth will be saved.\n\n");
-
-    printf("\t\tAre you ready, Captain Leo Mason?");
-    printf("\n\t\t\033[1;33mLeo:\033[0m (1. For Earth! / 2. Here goes nothing...) (1/2): ");
-    scanf("%d", &n);
-
-    printf("\n\t\t\033[1;32mCommander:\033[0m Good luck, Captain. Humanity's fate is in your hands. We'll see you when you return.\n");
-    printf("\033[1;31m\n\t\tPRESS ANY KEY TO PROCEED\033[0m");
-    getch();
+if (n == 2) {
+    printf("\n\t\t\033[1;32mCommander:\033[0m Fair enough, Captain. Here's the mission...\n");
+}else{
+    printf("\n\t\t\033[1;32mCommander:\033[0m Glad to see you're prepared, Captain.\n");
+}
+printf("\n\t\t\033[1;32mCommander:\033[0m Krypton is full of dangers. You'll face three trials: the Vortex Vault, Shadow Maze , and the Heart of Krypton.\n");
+getch();
+printf("\n\t\t\033[1;32mCommander:\033[0m The Vortex Vault is your first challenge. If you succeed, a mysterious figure may grant you a Time Watch which you can use only once.\n");
+printf("\n\t\t\033[1;32mCommander:\033[0m The Time Watch will give you a chance to revive yourself if needed be.\n");
+getch();
+printf("\n\t\t\033[1;32mCommander:\033[0m In the second trial, you'll face a maze filled with monstrous creatures. The Time Watch may be your only chance to survive.\n");
+printf("\n\t\t\033[1;32mCommander:\033[0m The final trial awaits at the Heart of Krypton. Retrieve the Solum Sphere, and Earth will be saved.\n");
+getch();
+printf("\n\t\tAre you ready, Captain Leo Mason?");
+printf("\n\t\t\033[1;33mLeo:\033[0m (1. For Earth! / 2. Here goes nothing...) (1/2): ");
+scanf("%d", &n);
+printf("\n\t\t\033[1;32mCommander:\033[0m Good luck, Captain. Humanity's fate is in your hands.\n");
+printf("\033[1;31m\n\t\tPRESS ANY KEY TO PROCEED\033[0m");
+getch();
 }
 
 void resetConditions()
@@ -223,11 +201,15 @@ int riddle()
     char *riddles[] = {
         "What has keys but can't open locks?",
         "What has to be broken before you can use it?",
-        "What has a ring but no finger?"};
+        "What has a ring but no finger?"
+        "What comes once in a minute, twice in a moment, but never in a thousand years?"
+        "What is always in front of you but can't be seen?"};
     char *answers[] = {
         "keyboard",
         "egg",
-        "telephone"};
+        "telephone"
+        "m"
+        "future"};
 
     srand(time(0));
 
@@ -428,12 +410,12 @@ void level1Outro()
         setCoordinates(36, 20);
         printf("\033[1;35mMysterious Figure:\033[0m You have answered correctly.");
         setCoordinates(36, 22);
-        printf("Here, take this... but use it carefully, for you can only use it a limited number of times.\n");
+        printf("Here, take this... but use it carefully.\n");
         getch();
         setCoordinates(40, 24);
         printf("\033[1;32mTIME WATCH: \n");
         setCoordinates(40, 26);
-        printf("You can use it only three times.\n");
+        printf("You can use it only once.\n");
         setCoordinates(40, 28);
         printf("It can help you reverse time if something happens to you.\033[0m\n");
         getch();
@@ -454,14 +436,14 @@ void level1Outro()
         setCoordinates(36, 20);
         printf("\033[1;35mMysterious Figure:\033[0m Perhaps your journey will sharpen your wits... or end them.\n");
         getch();
-        setCoordinates(36, 22);
-        printf("\033[1;33mLeo:\033[0m Yeah whatever I'm better off without your stupid watch.");
-        getch();
-        setCoordinates(36, 24);
-        printf("\033[1;35mMysterious Figure:\033[0m Good luck, traveller, and if you die, may you have a swift death.\n");
-        setCoordinates(36, 26);
-        printf("May the Force be with you.\n");
-        getch();
+        // setCoordinates(36, 22);
+        // printf("\033[1;33mLeo:\033[0m Yeah whatever I'm better off without your stupid watch.");
+        // getch();
+        // setCoordinates(36, 24);
+        // printf("\033[1;35mMysterious Figure:\033[0m Good luck, traveller, and if you die, may you have a swift death.\n");
+        // setCoordinates(36, 26);
+        // printf("May the Force be with you.\n");
+        // getch();
     }
     setCoordinates(64, 36);
     printf("\033[1;31mPRESS ANY KEY TO CONTINUE\033[0m");
@@ -499,62 +481,50 @@ void level2Intro()
 {
     system("cls");
 
-    setCoordinates(36, 10);
-    printf("\033[1;34m*Leo's journey continues as he ventures deeper into Krypton*\033[0m\n");
-    getch();
+   setCoordinates(36, 10);
+printf("\033[1;34m*Leo's journey continues deeper into Krypton*\033[0m\n");
+getch();
 
-    setCoordinates(36, 12);
-    printf("\033[1;33mLeo:\033[0m These mountains feel like they are closing in. I need to hurry...\n");
-    getch();
+setCoordinates(36, 12);
+printf("\033[1;33mLeo:\033[0m These mountains are closing in... I need to hurry...\n");
+getch();
 
-    setCoordinates(36, 14);
-    printf("\033[1;34m*Suddenly, a voice echoes through the valley*\033[0m\n");
-    getch();
+setCoordinates(36, 14);
+printf("\033[1;34m*Suddenly, a voice echoes through the valley*\033[0m\n");
+getch();
 
-    setCoordinates(36, 16);
-    printf("\033[1;37mVoice:\033[0m Leo... is that you?\n");
-    getch();
+setCoordinates(36, 16);
+printf("\033[1;36mVoice:\033[0m Leo... it's me, Kaden. Your old mentor... Do you remember me?\n");
+getch();
 
-    setCoordinates(36, 18);
-    printf("\033[1;33mLeo:\033[0m Who's there? Who are you?\n");
-    getch();
+setCoordinates(36, 18);
+printf("\033[1;33mLeo:\033[0m Kaden...? How is this possible?\n");
+getch();
 
-    setCoordinates(36, 20);
-    printf("\033[1;37mVoice:\033[0m It's me... Kaden. Your old mentor... You don't remember me?\n");
-    getch();
+setCoordinates(36, 20);
+printf("\033[1;36mKaden:\033[0m I was trapped here by the Solum Sphere.You have to help me escape from here.\n");
+getch();
 
-    setCoordinates(36, 22);
-    printf("\033[1;33mLeo:\033[0m Kaden...? How... how is this possible?\n");
-    getch();
+setCoordinates(36, 22);
+printf("\033[1;33mLeo:\033[0m What do I need to do?\n");
+getch();
 
-    setCoordinates(36, 24);
-    printf("\033[1;37mKaden:\033[0m I was sent here years ago. The Solum Sphere... it trapped me here. I can help you... but only if you help me escape.\n");
-    getch();
+setCoordinates(36, 24);
+printf("\033[1;36mKaden:\033[0m Reach to the Solem Sphere...but beware, Leo. There are monsters ahead that feed on fear.\n");
+getch();
 
-    setCoordinates(36, 26);
-    printf("\033[1;33mLeo:\033[0m What do I need to do?\n");
-    getch();
+setCoordinates(36, 26);
+printf("\033[1;33mLeo:\033[0m I won't give in to fear!\n");
+getch();
 
-    setCoordinates(36, 28);
-    printf("\033[1;37mKaden:\033[0m Trust me, Leo. But beware, the next level is filled with monsters that feed on fear. \n");
-    getch();
+setCoordinates(36, 28);
+printf("\033[1;36mKaden:\033[0m Stay strong...You can do this.\n");
+getch();
 
-    setCoordinates(36, 30);
-    printf("They can sense your fear, and it makes them stronger. They won't just kill you; they can take everything from you.\n");
-    getch();
-
-    setCoordinates(36, 32);
-    printf("\033[1;33mLeo:\033[0m I won’t give in to fear!\n");
-    getch();
-
-    setCoordinates(36, 34);
-    printf("\033[1;37mKaden:\033[0m Stay strong, Leo. If you solve the puzzle ahead, you can free me. Let's finish this, once and for all.\n");
-    getch();
-
-    setCoordinates(64, 36);
-    printf("\033[1;31mPRESS ANY KEY TO PROCEED\033[0m");
-    getch();
-    system("cls");
+setCoordinates(64, 30);
+printf("\033[1;31mPRESS ANY KEY TO PROCEED\033[0m");
+getch();
+system("cls");
 }
 
 void level2Outro()
@@ -566,7 +536,7 @@ void level2Outro()
     getch();
 
     setCoordinates(36, 14);
-    printf("\033[1;35mKaden:\033[0m You did well, Leo. But we must stay alert. Only one level remains.\n");
+    printf("\033[1;36mKaden:\033[0m You did well, Leo. But we must stay alert. Only one level remains.\n");
     getch();
 
     setCoordinates(36, 16);
@@ -574,7 +544,7 @@ void level2Outro()
     getch();
 
     setCoordinates(36, 18);
-    printf("\033[1;35mKaden:\033[0m The Solum Sphere is waiting for us there. I am trapped, but if you can reach it, we can finally go home and save Earth.\n");
+    printf("\033[1;36mKaden:\033[0m The Solum Sphere is waiting for us there. I am trapped, but if you can reach it, we can finally go home and save Earth.\n");
     getch();
 
     setCoordinates(36, 20);
@@ -582,7 +552,7 @@ void level2Outro()
     getch();
 
     setCoordinates(36, 22);
-    printf("\033[1;35mKaden:\033[0m Then let's finish this, once and for all.\n");
+    printf("\033[1;36mKaden:\033[0m Then let's finish this, once and for all.\n");
     getch();
 
     setCoordinates(64, 24);
@@ -609,8 +579,14 @@ void level2()
             input = getch();
             if (tolower(input) == 'q')
             {
+<<<<<<< HEAD
                 exit(0); // Exit the game if 'q' is pressed
             }
+=======
+            //     setCoordinates(36, 16);
+            //     printf("TimeWatch - remaining charges: %d.", lives);
+            //     setCoordinates(36, 18);
+>>>>>>> azan
 
             if (!move)
             {
@@ -739,7 +715,7 @@ void level3()
     resetConditions();
     system("cls");
     setCoordinates(74, 2);
-    printf("\033[1;33mTHE SHADOW MAZE - Level 3\033[0m");
+    printf("\033[1;33mTHE Timehold  - Level 3\033[0m");
     generateMaze(2); // Assuming level 3 uses a different maze ID
 
     char input;
