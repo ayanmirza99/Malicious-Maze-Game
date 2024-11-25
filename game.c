@@ -650,7 +650,7 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // Mutex for thread safety
 // Function to display and run the timer
 void *timerFunction(void *arg)
 {
-    int timeLeft = 30; // Set the timer duration
+    int timeLeft = 40; // Set the timer duration
 
     while (timeLeft > 0 && !timerExpired)
     {
