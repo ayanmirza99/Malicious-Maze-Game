@@ -667,14 +667,12 @@ void *timerFunction(void *arg)
         if (timeLeft == 0)
         {
             timerExpired = 1;
-            //pthread_mutex_lock(&mutex);
             system("cls");
             setCoordinates(36, 7);
             printf("\n\033[1;31mTime's up! You failed to complete the maze.\033[0m");
             setCoordinates(36, 20);
             printf(" ");
             fflush(stdout);
-            //pthread_mutex_unlock(&mutex);
             return NULL;
             exit(0);
         }
@@ -717,7 +715,7 @@ void level3()
     system("cls");
     setCoordinates(70, 2);
     printf("\033[1;33mTHE Timehold  - Level 3\033[0m");
-    generateMaze(2); // Assuming level 3 uses a different maze ID
+    generateMaze(2);
 
     char input;
     int move = 0; // 0 means active, 1 means paused
@@ -761,33 +759,25 @@ void level3()
         }
     }
 
-    // if (timerExpired)
-    // {
-    //     move = 1;
-    //     system("cls");
-    //     setCoordinates(36, 16);
-    //     printf("\033[1;31mTime's up! The maze has defeated you.\033[0m");
-    // }
-
     pthread_join(timerThread, NULL); // Wait for the timer thread to finish
 }
 
 int main()
 {
     // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
-    // heading();
-    // system("cls");
-    // introduction();
-    // system("cls");
-    // Sleep(500);
-    // displayInstructions();
-    // level1();
-    // system("cls");
-    // Sleep(500);
-    // level2Intro();
-    // level2();
-    // level2Outro();
-    // system("cls");
+    heading();
+    system("cls");
+    introduction();
+    system("cls");
+    Sleep(500);
+    displayInstructions();
+    level1();
+    system("cls");
+    Sleep(500);
+    level2Intro();
+    level2();
+    level2Outro();
+    system("cls");
     level3();
     return 0;
 }
