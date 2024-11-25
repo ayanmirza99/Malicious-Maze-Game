@@ -577,9 +577,7 @@ void level2()
 
     while (1)
     {
-        if (_kbhit())
-        {
-            input = getch();
+           input = getch();
             if (tolower(input) == 'q')
             {
                 exit(0); // Exit the game if 'q' is pressed
@@ -635,7 +633,7 @@ void level2()
                         exit(0);
                     }
                 }
-            }
+            
 
             if (playerX == endPointX && playerY == endPointY)
             {
@@ -726,8 +724,7 @@ void level3()
 
     while (!timerExpired)
     {
-        if (_kbhit())
-        {
+        
             input = getch();
 
             if (tolower(input) == 'q')
@@ -752,7 +749,7 @@ void level3()
                     setCoordinates(36, 20);
                     printf(" ");
                 }
-            }
+           
 
             if (playerX == endPointX && playerY == endPointY)
             {
@@ -778,19 +775,19 @@ void level3()
 int main()
 {
     // ShellExecute(NULL, "open", "setup.bat", NULL, NULL, SW_MINIMIZE);
-    heading();
-    system("cls");
-    introduction();
-    system("cls");
-    Sleep(500);
-    displayInstructions();
-    level1();
-    system("cls");
-    Sleep(500);
-    level2Intro();
-    level2();
-    level2Outro();
-    system("cls");
+    // heading();
+    // system("cls");
+    // introduction();
+    // system("cls");
+    // Sleep(500);
+    // displayInstructions();
+    // level1();
+    // system("cls");
+    // Sleep(500);
+    // level2Intro();
+    // level2();
+    // level2Outro();
+    // system("cls");
     level3();
     return 0;
 }
